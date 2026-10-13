@@ -32,11 +32,11 @@ def get_all_notes():
     return notes_storage
 
 
-# GET: get one note by id
-@app.get("/notes/{note_id}")
-def get_note(note_id: int):
+# GET: get one note by title
+@app.get("/notes/title/{title}")
+def get_note_by_title(title: str):
     for note in notes_storage:
-        if note["id"] == note_id:
+        if note["title"].lower() == title.lower():
             return note
 
     raise HTTPException(status_code=404, detail="Note not found")
